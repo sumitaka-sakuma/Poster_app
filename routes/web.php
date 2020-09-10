@@ -17,6 +17,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['prefix' => 'users', 'middleware' => 'auth' ], function(){
+
+    Route::get('index', 'UsersController@index')->name('users.index');
+    Route::get('create', 'UsersController@create')->name('users.create');
+    Route::post('store', 'UsersController@store')->name('users.store');
+    Route::get('show/{id}', 'UsersController@show')->name('users.show');
+    Route::get('edit/{id}', 'UsersController@edit')->name('users.edit');
+    Route::post('update/{id}', 'UsersController@update')->name('users.update');
+    Route::post('destroy/{id}', 'UsersController@destroy')->name('users.destroy');
+    
+});
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
