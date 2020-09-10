@@ -52,4 +52,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(self::class, 'followers', 'following_id', 'followed_id');
     }
+
+    //自分以外のユーザを取得
+    public function getAllUsers(Int $user_id){
+
+        return $this->where('id', '<>', $user_id)->paginate(5);
+    }
 }
