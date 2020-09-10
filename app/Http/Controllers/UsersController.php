@@ -16,7 +16,7 @@ class UsersController extends Controller
     //一覧表示
     public function index(User $user)
     {
-        
+
         $all_users = $user->getAllUsers(auth()->user()->id);
 
         return view('users.index', [
@@ -24,67 +24,42 @@ class UsersController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    //新規投稿入力画面
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    //新規投稿保存処理
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    //投稿詳細画面
+    public function show(User $user)
     {
-        //
+        $login_user = auth()->user();
+
+        return view('users.show', [
+            'user' => $user,
+            'login_user' => $login_user
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //投稿編集画面
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //投稿更新処理
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //投稿削除処理
     public function destroy($id)
     {
         //
