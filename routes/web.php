@@ -26,7 +26,11 @@ Route::group(['prefix' => 'users', 'middleware' => 'auth' ], function(){
     Route::get('edit/{id}', 'UsersController@edit')->name('users.edit');
     Route::post('update/{id}', 'UsersController@update')->name('users.update');
     Route::post('destroy/{id}', 'UsersController@destroy')->name('users.destroy');
-    
+
+    //フォロー/フォローの解除
+    Route::post('users/{user}/follow', 'UsersController@follow')->name('follow');
+    Route::delete('users/{user}/unfollow', 'UsersController@unfollow')->name('unfollow');
+
 });
 
 
