@@ -64,4 +64,14 @@ class UsersController extends Controller
     {
         //
     }
+
+    //フォロー
+    public function follow(User $user){
+
+    }
+
+    //フォロー解除
+    public function unfollow(User $user){
+
+    }
 }
