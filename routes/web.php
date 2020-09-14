@@ -27,12 +27,12 @@ Route::group(['prefix' => 'users', 'middleware' => 'auth' ], function(){
     Route::post('update/{id}', 'UsersController@update')->name('users.update');
     Route::post('destroy/{id}', 'UsersController@destroy')->name('users.destroy');
 
-    
+    //フォロー/フォローの解除
+    Route::post('follow', 'UsersController@follow')->name('follow');
+    Route::delete('unfollow', 'UsersController@unfollow')->name('unfollow');
 });
 
-//フォロー/フォローの解除
-Route::post('users/follow', 'UsersController@follow')->name('follow');
-Route::post('users/unfollow', 'UsersController@unfollow')->name('unfollow');
+
 
 
 Auth::routes();
