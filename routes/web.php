@@ -28,8 +28,8 @@ Route::group(['prefix' => 'users', 'middleware' => 'auth' ], function(){
     Route::post('destroy/{id}', 'UsersController@destroy')->name('users.destroy');
 
     //フォロー/フォローの解除
-    Route::post('follow', 'UsersController@follow')->name('follow');
-    Route::delete('unfollow', 'UsersController@unfollow')->name('unfollow');
+    Route::post('{id}/follow', 'UsersController@follow')->name('follow');
+    Route::delete('{id}/unfollow', 'UsersController@unfollow')->name('unfollow');
 });
 
 
