@@ -32,9 +32,6 @@ Route::group(['prefix' => 'users', 'middleware' => 'auth' ], function(){
     Route::delete('{id}/unfollow', 'UsersController@unfollow')->name('unfollow');
 });
 
-
-
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

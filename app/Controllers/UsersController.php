@@ -9,10 +9,9 @@ use App\Models\User;
 use App\Models\Post;
 use App\Models\Follower;
 
-
 class UsersController extends Controller
-{
-    
+{   
+
     //一覧表示
     public function index(User $user)
     {
@@ -34,29 +33,30 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         //
-    }
+    }   
 
     //投稿詳細画面
-    public function show(User $user)
+    public function show(User $user, Post $post, Follower $follower)
     {
-        $current_user   = auth()->user();
 
-        $is_following   = $current_user->isFollowing($user->id);
-        $is_followed    = $current_user->isFollowed($user->id);
-        $timeLines      = $current_user->getUserTimeLine($user->id);
-        $post_count     = $current_user->getPostCount($user->id);
-        $follow_count   = $current_user->getFollowCount($user->id);
-        $follower_count = $current_user->getFollowerCount($user->id);
+        $login_user = auth()->user();
+
+        $is_following = $login_user->isFollowing($user->id);
+        $is_followed = $login_user->isFollowed($user->id);
+        $timelines = $post->getUserTimeLine($user->id);
+        $post_count = $post->getPostCount($user->id);
+        $follow_count = $follower->getFollowCount($user->id);
+        $follower_count = $follower->getFollowerCount($user->id);
 
         return view('users.show', [
-            'user'            => $user,
-            'is_following'    => $is_following,
-            'is_followed'     => $is_followed,
-            'timeLines'       => $timeLines,
-            'post_count'      => $post_count,
-            'follow_count'    => $follow_count,
-            '$follower_count' => $follower_count
-        ]);
+            'user'           => $user,
+            'is_following'   => $is_following,
+            'is_followed'    => $is_followed,
+            'timelines'      => $timelines,
+            'post_count'     => $post_count,
+            'follow_count'   => $follow_count,
+            'follower_count' => $follower_count
+        ]);    
     }
 
     //投稿編集画面
